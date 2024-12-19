@@ -3,3 +3,6 @@
     margin-right: 30px;
     padding: 10px;
 }
+.modal-dimension {
+    max-width: 300px;
+}

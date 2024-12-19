@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./header.css"
-import { Container, Row, Col, Navbar, Nav, Form, FormControl, Button, Badge, NavDropdown } from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Nav, Form, FormControl, Button, Badge, NavDropdown,Modal } from 'react-bootstrap';
 import { FaSearch, FaMicrophone, FaHeart, FaShoppingCart, FaGem, FaStore, FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { BiColor } from "react-icons/bi";
 
 function Header() {
     const [searchQuery, setSearchQuery] = useState('');
     const [jewelleryDropdownVisible, setJewelleryDropdownVisible] = useState(false);
     const [goldDropdownVisible, setGoldDropdownVisible] = useState(false);
     const [diamondDropdownVisible, setDiamondDropdownVisible] = useState(false);
+    const [showSignup, setShowSignup] = useState(false);
 
     const navigate = useNavigate();
     const handleSearch = (e) => {
@@ -21,6 +23,19 @@ function Header() {
             console.log("No Item found");
         }
     }
+    const handleAccountClick =()=>{
+        setShowSignup(true);
+    }
+    const handleOnHideSignup=()=>{
+        setShowSignup(false);
+    } 
+    const handleClickSignUp=()=>{
+
+    }
+    const handleClickLogin=()=>{
+
+    }
+
     return (
         <>
             <Navbar bg="light" expand="lg" className="m-0 p-0">
@@ -56,7 +71,7 @@ function Header() {
                             <Nav.Link href="#stores" className="text-muted d-flex align-items-center">
                                 <FaStore className="me-1" /> STORES
                             </Nav.Link>
-                            <Nav.Link href="#account" className="text-muted d-flex align-items-center">
+                            <Nav.Link href="#account" className="text-muted d-flex align-items-center" onClick={handleAccountClick}>
                                 <FaUser className="me-1" /> ACCOUNT
                             </Nav.Link>
                             <Nav.Link href="#wishlist" className="text-muted d-flex align-items-center">
@@ -74,6 +89,22 @@ function Header() {
                                 </Badge>
                             </Nav.Link>
                         </Nav>
+                        <Modal show={showSignup} onHide={handleOnHideSignup} dialogClassName="modal-dimension">
+                            <Modal.Header closeButton>
+                                <Modal.Title>
+                                    SignUp/Login
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body className="d-flex justify-content-center">
+                                <Button variant="Primary" onClick={handleClickSignUp} className="mx-2" style={
+                                    {
+                                        background:"brown",
+                                        color:"white",   
+                                    }
+                                }>Signup</Button>
+                                <Button variant="Primary" onClick={handleClickLogin} className="mx-2">Login</Button>
+                            </Modal.Body>
+                        </Modal>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
