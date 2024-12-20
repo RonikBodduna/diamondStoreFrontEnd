@@ -30,7 +30,8 @@ function Header() {
         setShowSignup(false);
     } 
     const handleClickSignUp=()=>{
-
+        navigate("/signup")
+        setShowSignup(false);
     }
     const handleClickLogin=()=>{
 
